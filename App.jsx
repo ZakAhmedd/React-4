@@ -26,11 +26,15 @@ export default function App() {
     }
 
     function rollDice() {
-        setDice(oldDice => oldDice.map(die =>
-            die.isHeld ?
-                die :
-                {...die, value: Math.ceil(Math.random() * 6) }
-        ))
+        if (!gameWon) {
+            setDice(oldDice => oldDice.map(die =>
+                die.isHeld ?
+                    die :
+                    {...die, value: Math.ceil(Math.random() * 6) }
+            ))
+        } else {
+            setDice(generateAllNewDice())
+        }
     }
 
     function hold(id) {
@@ -40,7 +44,6 @@ export default function App() {
                     die
         ))
     }
-
 
     const diceElements = dice.map(dieObj => (
         <Die 
@@ -62,7 +65,7 @@ export default function App() {
               {diceElements}
             </div>
 
-            <button className="roll-dice" onClick={rollDice}>
+            <button className="roll-dice" onClick={rollDice} >
                 {gameWon ? "New Game" : "Roll"}
             </button>
         </main>
