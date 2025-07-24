@@ -1,4 +1,5 @@
-# Fourth React Project - Dice game
+# Fourth React Project
+Dice Game
 
 ## Installation
 
